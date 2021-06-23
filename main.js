@@ -8,6 +8,7 @@ window.addEventListener('scroll', function(){
 })
 
 
+
 const nav = document.querySelector('#header nav')
 const toggle = document.querySelectorAll('nav .toggle')
 
@@ -16,6 +17,7 @@ for (const element of toggle) {
     nav.classList.toggle('show')
   })
 }
+
 
 
 const links = document.querySelectorAll('nav ul li a')
@@ -27,3 +29,12 @@ for (const link of links) {
 }
 
 
+
+const swiper = new Swiper('.swiper-container', {
+  slidesPerView: 1,
+  pagination: {
+    elemento:'.swiper-pagination'
+  },
+  mousewheel: true,
+  keyboard: true
+})
