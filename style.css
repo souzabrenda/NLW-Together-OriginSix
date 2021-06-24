@@ -166,6 +166,11 @@ main {
 
 .logo span {
   color: var(--base-color)
+  
+}
+
+.logo-alt span {
+  color: var(--body-color);
 
 }
 
@@ -476,4 +481,54 @@ main #about .image::before {
   color: var(--base-color);
   font-size: 1.5rem;
   margin-right: 0.625rem;
+}
+
+
+/*    FOOTER    */
+footer {
+  background: var(--base-color);
+  
+}
+
+footer .logo {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+footer .brand p {
+  color: var(--text-color-light);
+  margin-bottom: 0.75rem;
+
+}
+
+footer i {
+  font-size: 1.5rem;
+  color: var(--text-color-light);
+  
+}
+
+footer .social {
+  display: flex;
+  gap: 2rem;
+  
+}
+
+footer .social a {
+  transition: .3s;
+
+}
+
+footer .social a:hover {
+  transform: translateY(-10px);
+
+}
+
+
+/*   RESPONSIVO  */
+@media (min-width: 992px) { 
+  .title {
+    font-size: 2.25rem;
+
+  }
+
 }
