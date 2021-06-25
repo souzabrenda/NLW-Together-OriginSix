@@ -40,10 +40,16 @@ function slideCarousel() {
   const swiper = new Swiper('.swiper-container', {
     slidesPerView: 1,
     pagination: {
-      elemento:'.swiper-pagination'
+      el: '.swiper-pagination'
     },
     mousewheel: true,
-    keyboard: true
+    keyboard: true,
+    breakpoints: {
+      767: { 
+        slidesPerView: 2,
+        setWrapperSize: true
+      }
+    }
   })
 }
 
@@ -52,8 +58,8 @@ function scrollReveal() {
   const scrollReveal =  ScrollReveal({
     origin: 'top',
     distance: '30px',
-    duration: 750,
-    reset: true
+    duration: 700,
+    reset: false
   })
   
   scrollReveal.reveal(
@@ -65,12 +71,49 @@ function scrollReveal() {
     `,{ interval: 100})
 }
 
+function activeCurrentSection () {
+  if (window.innerWidth < 1200) return
+
+  const sections = document.querySelectorAll('section[id]')
+  const anchorTags = document.querySelectorAll('.menu a')
+
+  sections.forEach(section => {
+    const sectionID = section.getAttribute('id')
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+
+        anchorTags.forEach(tag => {
+          tag.classList.remove('active')
+
+          anchorTags.forEach(tag => {
+            
+            const anchorHref = tag.getAttribute('href').split('#')[1]
+
+            // console.log('Tag', anchorHref)
+            if (anchorHref !== sectionID) return
+            console.log(`Section: ${sectionID}`, `Tag: ${anchorHref}`)
+
+            tag.classList.add('active')
+          })
+        })
+      })
+    }, { threshold: .4 })
+
+  observer.observe(section)
+
+  })
 
 
 
+
+
+}
 
   toggleMenu()
   hideMenu()
   changeHeaderColorOnScroll()
   slideCarousel()
   scrollReveal()
+  activeCurrentSection()
